@@ -34,6 +34,13 @@ void pr_imprime_arv (Arvore *a) {
 }
 
 //========= Exercício 1 - in-ordem ====
+void in_imprime_arv (Arvore *a) {
+    if (!verifica_arv_vazia(a)) {
+        pr_imprime_arv(a->esq);
+        printf("%c\n", a->info);
+        pr_imprime_arv(a->dir);
+    }
+}
 
 //========= Exercício 1 - pós-ordem ====
 
@@ -64,7 +71,10 @@ int main (int argc, char *argv[]) {
    );	
 
    //========= Exercício 1 - pré-ordem ====
-    pr_imprime_arv (a);
+   //pr_imprime_arv (a);
+
+   //========= Exercício 1 - in-ordem ====
+   in_imprime_arv (a);
 
    arv_libera (a);
 

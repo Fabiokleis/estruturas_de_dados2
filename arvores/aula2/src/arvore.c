@@ -25,24 +25,31 @@ void arv_libera (Arvore* a) {
 }
 
 //========= Exercício 1 - pré-ordem ====
-void pr_imprime_arv (Arvore *a) {
+void pre_imprime_arv (Arvore *a) {
     if (!verifica_arv_vazia(a)) {
         printf("%c\n", a->info);
-        pr_imprime_arv(a->esq);
-        pr_imprime_arv(a->dir);
+        pre_imprime_arv(a->esq);
+        pre_imprime_arv(a->dir);
     }
 }
 
 //========= Exercício 1 - in-ordem ====
 void in_imprime_arv (Arvore *a) {
     if (!verifica_arv_vazia(a)) {
-        pr_imprime_arv(a->esq);
+        in_imprime_arv(a->esq);
         printf("%c\n", a->info);
-        pr_imprime_arv(a->dir);
+        in_imprime_arv(a->dir);
     }
 }
 
 //========= Exercício 1 - pós-ordem ====
+void pos_imprime_arv (Arvore *a) {
+    if (!verifica_arv_vazia(a)) {
+        pos_imprime_arv(a->esq);
+        pos_imprime_arv(a->dir);
+        printf("%c\n", a->info);
+    }
+}
 
 //========= Exercício 2 - pertence ====
 bool pertence_arv (Arvore *a, char c) {}
@@ -71,10 +78,16 @@ int main (int argc, char *argv[]) {
    );	
 
    //========= Exercício 1 - pré-ordem ====
-   //pr_imprime_arv (a);
+   printf("//// pré-ordem ////\n");
+   pre_imprime_arv (a);
 
    //========= Exercício 1 - in-ordem ====
+   printf("//// in-ordem ////\n");
    in_imprime_arv (a);
+
+   //========= Exercício 1 - pós-ordem ====
+   printf("//// pós-ordem ////\n");
+   pos_imprime_arv (a);
 
    arv_libera (a);
 

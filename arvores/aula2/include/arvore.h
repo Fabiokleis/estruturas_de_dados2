@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum { false = 0, true = 1} bool;
+
 typedef struct arvore {
    char info;
    struct arvore *esq;
@@ -12,8 +14,11 @@ typedef struct arvore {
 
 Arvore* cria_arv_vazia (void);
 Arvore* constroi_arv (char c, Arvore *e, Arvore *d);
-int verifica_arv_vazia (Arvore *a);
+bool verifica_arv_vazia (Arvore *a);
 void arv_libera (Arvore* a);
+bool pertence_arv (Arvore *a, char c);
+int conta_nos (Arvore *a);
+int calcula_altura_arvore (Arvore *a);
 
 #endif
 

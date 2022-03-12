@@ -52,7 +52,12 @@ void pos_imprime_arv (Arvore *a) {
 }
 
 //========= Exercício 2 - pertence ====
-bool pertence_arv (Arvore *a, char c) {}
+bool pertence_arv (Arvore *a, char c) {
+    if (!verifica_arv_vazia(a)) {
+        if (a->info == c) return true;
+        return pertence_arv(a->esq, c) || pertence_arv(a->dir, c);
+    } else return false;
+}
 
 //========= Exercício 3 - conta nós ====
 int conta_nos (Arvore *a) {}
@@ -76,7 +81,7 @@ int main (int argc, char *argv[]) {
        constroi_arv('f',cria_arv_vazia(),cria_arv_vazia())
      )
    );	
-
+   
    //========= Exercício 1 - pré-ordem ====
    printf("//// pré-ordem ////\n");
    pre_imprime_arv (a);
@@ -88,10 +93,11 @@ int main (int argc, char *argv[]) {
    //========= Exercício 1 - pós-ordem ====
    printf("//// pós-ordem ////\n");
    pos_imprime_arv (a);
+   
 
+   bool per = pertence_arv (a, 'a');
+   printf("`a` pertence %d\n", per);
    arv_libera (a);
 
    return 0;
 }
-
-

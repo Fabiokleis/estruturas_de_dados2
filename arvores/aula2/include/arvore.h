@@ -19,6 +19,6 @@ void arv_libera (Arvore* a);
 bool pertence_arv (Arvore *a, char c);
 int conta_nos (Arvore *a);
 int calcula_altura_arvore (Arvore *a);
-
+int conta_nos_folha (Arvore *a);
 #endif
 

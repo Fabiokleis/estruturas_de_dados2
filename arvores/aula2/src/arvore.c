@@ -90,8 +90,14 @@ int calcula_altura_arvore (Arvore *a) {
 }
 
 //========= Exercício 5 - conta folhas ====
-
-
+int conta_nos_folha (Arvore *a) {
+    int c = 0;
+    if (!verifica_arv_vazia(a)) {
+        if (verifica_arv_vazia(a->esq) && verifica_arv_vazia(a->dir))
+            return ++c;
+        return conta_nos_folha(a->esq) + conta_nos_folha(a->dir);
+    } else return 0;
+}
 
 int main (int argc, char *argv[]) {
 
@@ -105,7 +111,7 @@ int main (int argc, char *argv[]) {
        constroi_arv('f',cria_arv_vazia(),cria_arv_vazia())
      )
    );	
-  
+
    //========= Exercício 1 - pré-ordem ====
    printf("//// pré-ordem ////\n");
    pre_imprime_arv (a);
@@ -120,15 +126,19 @@ int main (int argc, char *argv[]) {
 
    //========= Exercício 2 - pertence ====
    bool pertence = pertence_arv (a, 'a');
-   printf("`a` pertence %d\n", pertence);
+   printf("char `a` pertence a arvore `a`: %d\n", pertence);
 
    //========= Exercício 3 - pertence ====
    int nos = conta_nos(a);
-   printf("total de nos da arvore a: %d\n", nos);
+   printf("total de nos da arvore `a`: %d\n", nos);
 
    //========= Exercício 4 - pertence ====
    int altura = calcula_altura_arvore(a);
    printf("altura da arvore `a`: %d\n", altura);
+
+   //========= Exercício 5 - conta folhas ====
+   int nos_folha = conta_nos_folha(a);
+   printf("quantidade de nos folha da arvore `a`: %d\n", nos_folha);
 
    arv_libera (a);
 

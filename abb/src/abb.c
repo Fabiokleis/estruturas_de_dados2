@@ -30,8 +30,30 @@ Arvore* inserir (Arvore *a, int v) {
 
 //========= Q1 - remover
 Arvore* remover (Arvore *a, int v) {
-   /* Completar */
-   
+   if (a == NULL) return NULL;
+   else {
+       if (a->info > v) {
+           a->esq = remover(a->esq, v);
+       } else if (a->info < v) {
+           a->dir = remover(a->dir, v);
+       } else if ((a->esq == NULL) && (a->dir == NULL)) {
+           free(a);
+           a = NULL;
+       } else if (a->dir == NULL) {
+
+       } else if (a->esq == NULL) {
+           Arvore *tmp = a;
+           a = a->dir;
+           free(tmp);
+       } else {
+           Arvore *tmp = a->esq;
+           while (tmp->dir != NULL)
+               tmp = tmp->dir;
+           a->info = tmp->info;
+           tmp->info = v;
+           a->esq = remover(a->esq, v);
+       }
+   }
    return a;
 }
 

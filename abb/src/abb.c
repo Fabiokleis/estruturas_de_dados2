@@ -67,7 +67,22 @@ int buscar (Arvore *a, int v) {
 }
 
 //========= Q2 - min =====
+int min (Arvore *a) {
+    if (a == NULL) return -1;
+    Arvore *tmp = a;
+    while (tmp->esq != NULL)
+        tmp = tmp->esq;
+    return tmp->info;
 
+}
+
+int max (Arvore *a) {
+    if (a == NULL) return -1;
+    Arvore *tmp = a;
+    while (tmp->dir != NULL)
+        tmp = tmp->dir;
+    return tmp->info;
+}
 
 //========= Q2 - max =====
 
@@ -91,11 +106,21 @@ int main () {
 
    Arvore *a = cria_arvore_vazia ();
 
-   //inserir
-   for (int i = 0; i < 10; i++)
-     inserir(a, i*2);
-   //....
+   a = inserir (a, 50);
+   a = inserir (a, 30);
+   a = inserir (a, 90);
+   a = inserir (a, 20);
+   a = inserir (a, 40);
+   a = inserir (a, 95);
+   a = inserir (a, 10);
+   a = inserir (a, 35);
+   a = inserir (a, 45);
 
+   printf("chave 5: %d\n", buscar(a, 5));
+   printf("chave 45: %d\n", buscar(a, 45));
+
+   printf("min: %d\n", min(a));
+   printf("max: %d\n", max(a));
    printf("\n");
    pre_order (a);	
    printf("\n");

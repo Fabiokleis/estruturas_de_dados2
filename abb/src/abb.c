@@ -76,6 +76,7 @@ int min (Arvore *a) {
 
 }
 
+//========= Q2 - max =====
 int max (Arvore *a) {
     if (a == NULL) return -1;
     Arvore *tmp = a;
@@ -84,9 +85,15 @@ int max (Arvore *a) {
     return tmp->info;
 }
 
-//========= Q2 - max =====
-
 //========= Q3 - imprime_decrescente =====
+void imprime_decrescente (Arvore *a) {
+    if (a == NULL) return;
+    else {
+        imprime_decrescente(a->dir);
+        printf("%d ", a->info);
+        imprime_decrescente(a->esq);
+    }
+}
 
 
 //========= Q4 - maior ramo =====
@@ -121,6 +128,8 @@ int main () {
 
    printf("min: %d\n", min(a));
    printf("max: %d\n", max(a));
+   printf("ordem decrescente: ");
+   imprime_decrescente(a);
    printf("\n");
    pre_order (a);	
    printf("\n");

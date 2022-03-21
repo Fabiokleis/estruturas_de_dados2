@@ -18,5 +18,5 @@ int buscar (Arvore *a, int v);
 void pre_order (Arvore* a); 
 int min (Arvore *a);
 int max (Arvore *a);
-
+void imprime_decrescente (Arvore *a);
 #endif

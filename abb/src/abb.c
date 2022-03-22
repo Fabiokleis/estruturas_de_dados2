@@ -107,9 +107,7 @@ void imprime_decrescente (Arvore *a) {
 
 //========= Q4 - maior ramo =====
 int maior_ramo (Arvore *a) {
-    if (a == NULL) return 0;
-    else {
-    }
+
 }
 
 
@@ -138,6 +136,10 @@ int main () {
    a = inserir (a, 35);
    a = inserir (a, 45);
 
+   printf("\n");
+   pre_order (a);	
+   printf("\n");
+ 
    printf("chave 5: %d\n", buscar(a, 5));
    printf("chave 45: %d\n", buscar(a, 45));
 
@@ -145,11 +147,9 @@ int main () {
    printf("max: %d\n", max(a));
    printf("ordem decrescente: ");
    imprime_decrescente(a);
-   printf("\nmaior ramo: %d\n", maior_ramo(a));
    printf("\n");
-   pre_order (a);	
-   printf("\n");
-    
+   //printf("\nmaior ramo: %d\n", maior_ramo(a));
+   
 
    // ====== Q5 ====
    clock_t start, end;

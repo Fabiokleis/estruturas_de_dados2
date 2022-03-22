@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct arvore {
    int info;
@@ -19,4 +20,5 @@ void pre_order (Arvore* a);
 int min (Arvore *a);
 int max (Arvore *a);
 void imprime_decrescente (Arvore *a);
+int maior_ramo (Arvore *a);
 #endif

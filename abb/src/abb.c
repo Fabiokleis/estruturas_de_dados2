@@ -1,4 +1,13 @@
 #include "abbLista.h"
+/*
+ 
+    inserindo elementos de 0->99999...
+    Tempo de execução busca em abb em ordem: 0.001057000000000
+
+    inserindo elementos de forma aleatoria...
+    Tempo de execução busca em abb em ordem aleatória: 0.000001000000000
+
+ */
 
 Arvore* cria_arvore_vazia (void) {
    return NULL;
@@ -78,7 +87,7 @@ int min (Arvore *a) {
 
 //========= Q2 - max =====
 int max (Arvore *a) {
-    if (a == NULL) return -1;
+    if (a == NULL) return 0;
     Arvore *tmp = a;
     while (tmp->dir != NULL)
         tmp = tmp->dir;
@@ -97,6 +106,12 @@ void imprime_decrescente (Arvore *a) {
 
 
 //========= Q4 - maior ramo =====
+int maior_ramo (Arvore *a) {
+    if (a == NULL) return 0;
+    else {
+    }
+}
+
 
 
 void pre_order (Arvore* a) {
@@ -130,12 +145,43 @@ int main () {
    printf("max: %d\n", max(a));
    printf("ordem decrescente: ");
    imprime_decrescente(a);
+   printf("\nmaior ramo: %d\n", maior_ramo(a));
    printf("\n");
    pre_order (a);	
    printf("\n");
-
+    
 
    // ====== Q5 ====
+   clock_t start, end;
+   double elapsed_time;
+
+   Arvore *q5 = cria_arvore_vazia();
+   int n;
+   printf("inserindo elementos de 0->99999...\n");
+   for (n = 0; n < 100000; n++) 
+       q5 = inserir(q5, n);
+
+   start = clock();
+   int result = buscar(q5, 100000);
+   end = clock();
+
+   elapsed_time = (end - start)/(double)CLOCKS_PER_SEC;
+   printf("%d\n", result);
+   printf("Tempo de execução busca em abb em ordem: %.15f\n", elapsed_time);
+
+   Arvore *q52 = cria_arvore_vazia();
+   printf("inserindo elementos de forma aleatoria...\n");
+   srand(time(NULL));
+   for (n = 0; n < 100000; n++)
+       q52 = inserir(q52, rand() % 100000);
+
+   start = clock();
+   result = buscar(q52, 100000);
+   end = clock();
+
+   elapsed_time = (end - start)/(double)CLOCKS_PER_SEC;
+   printf("%d\n", result);
+   printf("Tempo de execução busca em abb em ordem aleatória: %.15f\n", elapsed_time);
 
    return 0;
 }

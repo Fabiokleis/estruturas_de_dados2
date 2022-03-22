@@ -88,6 +88,20 @@ int calcula_altura_arvore (Arvore *a) {
         return d;
     }
 }
+/* solucao mais simples
+int calcula_altura_arvore (Arvore *a) {
+    if(!verifica_arv_vazia(a)) {
+        int c = calcula_altura_arvore(a->esq);
+        int d = calcula_altura_arvore(a->dir);
+        if(c > d)
+            return c + 1;
+        else
+            return d + 1;
+    }
+
+    return -1;
+}
+*/
 
 //========= Exercício 5 - conta folhas ====
 int conta_nos_folha (Arvore *a) {

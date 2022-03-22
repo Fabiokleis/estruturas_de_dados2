@@ -49,7 +49,9 @@ Arvore* remover (Arvore *a, int v) {
            free(a);
            a = NULL;
        } else if (a->dir == NULL) {
-
+           Arvore *tmp = a;
+           a = a->esq;
+           free(tmp);
        } else if (a->esq == NULL) {
            Arvore *tmp = a;
            a = a->dir;
@@ -107,10 +109,21 @@ void imprime_decrescente (Arvore *a) {
 
 //========= Q4 - maior ramo =====
 int maior_ramo (Arvore *a) {
+    if (a == NULL) return 0;
+    else {
+        int m = INT_MIN;
+        if (a->esq == NULL && a->dir == NULL) return a->info;
+        int c = maior_ramo(a->esq);
+        int d = maior_ramo(a->dir);
 
+        if (a->esq != NULL && a->dir != NULL) {
+            m = m > (a->info + c + d) ? m : (a->info + c + d);
+            return (c > d ? c : d) + a->info;
+        }
+        return ((!a->esq) ? c : d) + a->info;
+    }
+    
 }
-
-
 
 void pre_order (Arvore* a) {
    if (a != NULL) {
@@ -148,9 +161,10 @@ int main () {
    printf("ordem decrescente: ");
    imprime_decrescente(a);
    printf("\n");
-   //printf("\nmaior ramo: %d\n", maior_ramo(a));
-   
 
+   printf("\nmaior ramo: %d\n", maior_ramo(a));
+   
+    /*
    // ====== Q5 ====
    clock_t start, end;
    double elapsed_time;
@@ -182,7 +196,7 @@ int main () {
    elapsed_time = (end - start)/(double)CLOCKS_PER_SEC;
    printf("%d\n", result);
    printf("Tempo de execução busca em abb em ordem aleatória: %.15f\n", elapsed_time);
-
+    */
    return 0;
 }
 

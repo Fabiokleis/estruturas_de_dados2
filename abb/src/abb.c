@@ -111,13 +111,11 @@ void imprime_decrescente (Arvore *a) {
 int maior_ramo (Arvore *a) {
     if (a == NULL) return 0;
     else {
-        int m = INT_MIN;
         if (a->esq == NULL && a->dir == NULL) return a->info;
         int c = maior_ramo(a->esq);
         int d = maior_ramo(a->dir);
 
         if (a->esq != NULL && a->dir != NULL) {
-            m = m > (a->info + c + d) ? m : (a->info + c + d);
             return (c > d ? c : d) + a->info;
         }
         return ((a->esq != NULL) ? c : d) + a->info;

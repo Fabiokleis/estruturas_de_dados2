@@ -120,9 +120,8 @@ int maior_ramo (Arvore *a) {
             m = m > (a->info + c + d) ? m : (a->info + c + d);
             return (c > d ? c : d) + a->info;
         }
-        return ((!a->esq) ? c : d) + a->info;
+        return ((a->esq != NULL) ? c : d) + a->info;
     }
-    
 }
 
 void pre_order (Arvore* a) {

@@ -15,7 +15,6 @@ int main () {
    //AVL = remover (AVL, 'N');
    //AVL = remover (AVL, 'P');
    //AVL = remover (AVL, 'O');
-
    imprimir_in_order (AVL, 0);
 
    return 0;

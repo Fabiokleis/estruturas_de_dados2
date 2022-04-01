@@ -11,17 +11,17 @@ int altura (Arvore* a) {
 }
 
 int atualizar_altura (Arvore *a) {
-    return (maior(atualizar_altura(a->esq), atualizar_altura(a->dir)) + 1);
+    return (maior(altura(a->esq), altura(a->dir)) + 1);
 }
 
 /*----------------------*/
 int balanceamento (Arvore *a) {
-    return (atualizar_altura(a->dir) - atualizar_altura(a->esq));
+    return (altura(a->dir) - altura(a->esq));
 }
 
 /*----------------------*/
 Arvore* rotacao_simples_esq (Arvore* a) {
-    Arvore *t = a->dir;
+    No *t = a->dir;
     a->dir = t->esq;
     t->esq = a;
     a->altura = atualizar_altura(a);
@@ -31,7 +31,7 @@ Arvore* rotacao_simples_esq (Arvore* a) {
 
 /*----------------------*/
 Arvore* rotacao_simples_dir (Arvore* a) {
-    Arvore *t = a->esq;
+    No *t = a->esq;
     a->esq = t->dir;
     t->dir = a;
     a->altura = atualizar_altura(a);
@@ -55,10 +55,11 @@ Arvore* rotacao_dupla_dir (Arvore* a) {
 Arvore* atualizar_fb_dir (Arvore *a) {
     a->altura = atualizar_altura(a);
     if (balanceamento(a) == 2) {
-        if (balanceamento(a->dir) >= 0)
+        if (balanceamento(a->dir) >= 0) {
             a = rotacao_simples_esq(a);
-        else
+        } else {
             a = rotacao_dupla_esq(a);
+        }
     }
     return a;
 }
@@ -67,10 +68,11 @@ Arvore* atualizar_fb_dir (Arvore *a) {
 Arvore* atualizar_fb_esq (Arvore *a) {
     a->altura = atualizar_altura(a);
     if (balanceamento(a) == -2) {
-        if (balanceamento(a->esq) <= 0)
+        if (balanceamento(a->esq) <= 0) {
             a = rotacao_simples_dir(a);
-        else
+        } else {
             a = rotacao_dupla_dir(a);
+        }
     }
     return a;
 }
@@ -78,7 +80,7 @@ Arvore* atualizar_fb_esq (Arvore *a) {
 /*----------------------*/
 Arvore* inserir (Arvore *a, char chave) {
     if (a == NULL) {
-        a  = (Arvore*)malloc(sizeof(Arvore));
+        a = (No*)malloc(sizeof(No));
         a->chave = chave;
         a->altura = 0;
         a->esq = a->dir = NULL;

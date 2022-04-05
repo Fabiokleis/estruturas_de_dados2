@@ -24,7 +24,7 @@ int main () {
    AVL = inserir (AVL, 'R');
 
    imprimir_in_order (AVL, 0);
-   
+/*   
    AVL = remover (AVL, 'A');
    AVL = remover (AVL, 'H');
    AVL = remover (AVL, 'E');
@@ -34,6 +34,6 @@ int main () {
    AVL = remover (AVL, 'P');
    AVL = remover (AVL, 'O');
    imprimir_in_order (AVL, 0);
-
+*/
    return 0;
 }

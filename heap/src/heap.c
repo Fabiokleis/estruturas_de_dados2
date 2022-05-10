@@ -45,7 +45,12 @@ void build_max_heap (int V[], int size) {
 }
 
 void heap_sort (int V[], int size) {
-   /*TERMINAR*/
+    build_max_heap(V, size);
+    for (int i = size-1; i >= 0; i--) {
+        trocar(V, i, 0);
+        size = i;
+        max_heapify(V, size, 0);
+    }
 }
 
 int main () {
@@ -58,13 +63,13 @@ int main () {
    printf("Vetor inicial : ");
    imprimir (V, size);
 
-   build_max_heap(V, size);
-   printf("Vetor max_heapify: ");
-   imprimir (V, size);
-
-//   heap_sort (V, size);
-//   printf("Vetor ordenado: ");
+//   build_max_heap(V, size);
+//   printf("Vetor max_heapify: ");
 //   imprimir (V, size);
+
+   heap_sort (V, size);
+   printf("Vetor ordenado: ");
+   imprimir (V, size);
   
    return 0;
 }

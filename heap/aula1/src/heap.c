@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "heap.h"
 
 int pai (int i) {
    return (i - 1) / 2;
@@ -60,12 +60,12 @@ int main () {
    int size = 10;
 
    int V[] = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-   printf("Vetor inicial : ");
-   imprimir (V, size);
+   printf("Vetor inicial: ");
+   imprimir(V, size);
 
-//   build_max_heap(V, size);
-//   printf("Vetor max_heapify: ");
-//   imprimir (V, size);
+//  build_max_heap(V, 9);
+//  printf("Vetor build-max-heap: ");
+//  imprimir (V, 9);
 
    heap_sort (V, size);
    printf("Vetor ordenado: ");

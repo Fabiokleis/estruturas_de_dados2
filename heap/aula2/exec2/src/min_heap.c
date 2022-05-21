@@ -101,6 +101,20 @@ void push_back(int **V, int chave, int *size) {
     (*V)[(*size - 1)] = chave;
 }
 
+// headers //
+/*
+
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <limits.h>
+
+
+    typedef struct vector {
+        int *v;
+        int size;
+    } vector;
+
+*/
 int main () {
     
     vector *vec = (vector*)malloc(sizeof(vector));

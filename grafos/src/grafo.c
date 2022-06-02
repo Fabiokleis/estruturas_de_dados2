@@ -52,8 +52,13 @@ void liberar_grafo_mat (GrafoM *G) {
    free(G);
 }
 // mostra o grafo M booleano;
-void print_grafoM (GrafoM *G) { 
-   for (int i = 0; i < G->V; i++) {
+void print_grafoM (GrafoM *G) {
+    printf("    ");
+    for (int i = 0; i < G->V; i++) {
+        printf("%d ", i);
+    }
+    printf("\n\n");
+    for (int i = 0; i < G->V; i++) {
       printf("%d  ", i);
       for (int j = 0; j < G->V; j++)
          if (G->Mat[i][j] == 1) {
@@ -62,7 +67,7 @@ void print_grafoM (GrafoM *G) {
             printf(" 0");
          }
       printf( "\n");
-   }
+    }
 }
 
 // percorre e mostra todas as listas dento do G->adj;
@@ -101,11 +106,12 @@ NoA* inserir_no(NoA* no_a, int id) {
     return novo_a;
 }
 
-// insere uma nova aresta entre dois vertices sem uma ordem
+// insere uma nova aresta entre dois vertices sem ordem
 void insere_arestaA(GrafoA *G, int v, int id) {
-    G->Adj[v] = inserir_no(G->Adj[v], id); 
+    G->Adj[v] = inserir_no(G->Adj[v], id);
     G->E++; // incrementa o numero total de arestas a cada insercao
 }
+
 
 /* */
 int main () {
@@ -119,7 +125,7 @@ int main () {
      * 1 -- 3
      *
      */
-    printf("matriz de adjacencia\n");
+    printf("matriz de adjacencia nao direcionada\n");
     int Vm = 6; //Número de vértices
     GrafoM* Gm = criar_grafo_mat (Vm);
     inicia_matriz(Gm); // inicia todos os valores para 0
@@ -150,7 +156,7 @@ int main () {
 
     print_grafoM(Gm);
     liberar_grafo_mat (Gm);
-    printf("lista de adjacencia\n");
+    printf("lista de adjacencia nao direcionada\n");
 
     int Va = 6; // numero de vértices
     GrafoA* Ga = criar_grafo_adj (Va);
@@ -185,6 +191,63 @@ int main () {
     print_grafoA(Ga);
     liberar_grafo_adj (Ga);
 
+    // 2)
+    /*
+     *
+     * 0 --> 5
+     * 0 --> 1
+     * 1 --> 2
+     * 1 --> 3
+     * 2 --> 0
+     * 2 --> 4
+     * 3 --> 2
+     * 4 --> 3
+     * 5 --> 4
+    */
+    printf("matriz de adjacencia direcionada\n");
+    int Vmd = 6; //Número de vértices
+    GrafoM* Gmd = criar_grafo_mat (Vmd);
+    inicia_matriz(Gmd);
+    // 0
+    insere_arestaM(Gmd, 0, 5);
+    insere_arestaM(Gmd, 0, 1);
+    // 1
+    insere_arestaM(Gmd, 1, 2);
+    insere_arestaM(Gmd, 1, 3);
+    // 2
+    insere_arestaM(Gmd, 2, 0);
+    insere_arestaM(Gmd, 2, 4);
+    // 3
+    insere_arestaM(Gmd, 3, 2);
+    // 4
+    insere_arestaM(Gmd, 4, 3);
+    // 5
+    insere_arestaM(Gmd, 5, 4);
+
+    print_grafoM(Gmd);
+    liberar_grafo_mat (Gmd);
+
+    printf("lista de adjacencia direcionada\n");
+    int Vad = 6; //Número de vértices
+    GrafoA* Gad = criar_grafo_adj(Vad);
+    // 0
+    insere_arestaA(Gad, 0, 5);
+    insere_arestaA(Gad, 0, 1);
+    // 1
+    insere_arestaA(Gad, 1, 2);
+    insere_arestaA(Gad, 1, 3);
+    // 2
+    insere_arestaA(Gad, 2, 0);
+    insere_arestaA(Gad, 2, 4);
+    // 3
+    insere_arestaA(Gad, 3, 2);
+    // 4
+    insere_arestaA(Gad, 4, 3);
+    // 5
+    insere_arestaA(Gad, 5, 4);
+
+    print_grafoA(Gad);
+    liberar_grafo_adj(Gad);
 
     return 0;
 }
